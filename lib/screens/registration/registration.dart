@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }

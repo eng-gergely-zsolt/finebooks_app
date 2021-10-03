@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'login.dart';
-import '../../screens/register/register.dart';
+import '../login/login.dart';
+import '../../screens/registration/registration.dart';
 
 class Lobby extends StatelessWidget {
   @override
@@ -51,7 +51,9 @@ class Lobby extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
                     );
                   },
                   child: Text('Sign in'),
@@ -60,7 +62,9 @@ class Lobby extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Register()),
+                      MaterialPageRoute(
+                        builder: (context) => Registration(),
+                      ),
                     );
                   },
                   child: Text(
