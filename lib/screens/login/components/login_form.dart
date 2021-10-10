@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:finebooks_app/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../home/home.dart';
 import '../../../models/user.dart';
 import '../../../blocs/login/login_state.dart';
 import '../../../blocs/login/login_block.dart';

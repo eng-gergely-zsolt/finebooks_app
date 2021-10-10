@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:finebooks_app/models/user.dart';
+import '../../models/user.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<User>> fetchPerson(String username) async {
@@ -9,7 +9,7 @@ Future<List<User>> fetchPerson(String username) async {
   if (username == '') {
     return [];
   } else {
-    uri = 'https://10.0.2.2:5001/person' + '/$username';
+    uri = 'https://10.0.2.2:5001/user' + '/$username';
   }
 
   final response = await http.get(Uri.parse(uri));

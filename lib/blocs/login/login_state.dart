@@ -1,5 +1,5 @@
 import '../../models/user.dart';
-import '../../services/login_call.dart';
+import '../../services/get/get_user.dart';
 
 class LoginState {
   final String userName;
