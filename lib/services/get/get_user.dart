@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../../models/user.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<User>> fetchPerson(String username) async {
+Future<List<User>> fetchUserByUsername(String username) async {
   String uri = '';
 
   if (username == '') {

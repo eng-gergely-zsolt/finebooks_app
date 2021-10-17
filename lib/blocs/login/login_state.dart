@@ -64,7 +64,7 @@ class LoginState {
     setIsUsernameValid(false);
     setIsPasswordCorrect(false);
 
-    Future<List<User>> person = fetchPerson(username);
+    Future<List<User>> person = fetchUserByUsername(username);
 
     person.then((value) {
       if (value.isNotEmpty) {

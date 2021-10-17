@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import './screens/lobby/lobby.dart';
+import './models/user.dart';
+import '../screens/home/home.dart';
+import 'screens/lobby/lobby.dart';
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
@@ -10,16 +12,25 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final User user = User(
+      id: 1,
+      email: 'anomakyr@gmail.com',
+      username: 'anomakyr',
+      lastName: 'Gergely',
+      firstName: 'Zsolt');
   @override
   build(context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Lobby(),
-      ),
-    );
     // return MaterialApp(
-    //   home: Lobby(),
+    //   home: Home(user),
+
+    //   // Scaffold(
+    //   //   // body: Lobby(),
+    //   //   body: Home(user),
+    //   // ),
     // );
+    return MaterialApp(
+      home: Lobby(),
+    );
   }
 }
 
@@ -44,4 +55,4 @@ class MyHttpOverrides extends HttpOverrides {
 
 // var mediaQuery = MediaQuery.of(context);
 // var appWidth = mediaQuery.size.width;
-// var appHeight = mediaQuery.size.width - MediaQueryData.fromWindow(window).padding.top;
+// var appHeight = mediaQuery.size.height - MediaQueryData.fromWindow(window).padding.top;

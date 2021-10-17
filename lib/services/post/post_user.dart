@@ -5,14 +5,6 @@ import '../../models/user.dart';
 import 'package:http/http.dart' as http;
 
 Future<String> postUser(User user) async {
-  User u = new User(
-    email: "'jakab.andrea@gmail.com'",
-    username: "'csillagfeny'",
-    password: "'654'",
-    lastName: "'Jakab'",
-    firstName: "'Andrea'",
-  );
-
   try {
     final response = await http
         .post(
