@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1056849065081",
+    "project_id": "finebooks-1f58e",
+    "storage_bucket": "finebooks-1f58e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056849065081:android:e47e778c055356dda810a8",
+        "android_client_info": {
+          "package_name": "com.finebooks.finebooks_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056849065081-86m2c4ghntoggv4kjs9vhq9p4hv4qpm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoXKk8Qc72puKvyxZn4fM08Cz5sGjIjwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056849065081-86m2c4ghntoggv4kjs9vhq9p4hv4qpm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

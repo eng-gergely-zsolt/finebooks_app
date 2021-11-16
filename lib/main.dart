@@ -1,35 +1,35 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import './models/user.dart';
 import '../screens/home/home.dart';
-import 'screens/lobby/lobby.dart';
 
-void main() {
+void main() async {
   HttpOverrides.global = new MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final User user = User(
-      id: 1,
-      email: 'anomakyr@gmail.com',
-      username: 'anomakyr',
-      lastName: 'Gergely',
-      firstName: 'Zsolt');
+    id: 1,
+    image: '',
+    password: '123',
+    email: 'anomakyr@gmail.com',
+    username: 'anomakyr',
+    lastName: 'Gergely',
+    firstName: 'Zsolt',
+  );
+
   @override
   build(context) {
-    // return MaterialApp(
-    //   home: Home(user),
-
-    //   // Scaffold(
-    //   //   // body: Lobby(),
-    //   //   body: Home(user),
-    //   // ),
-    // );
     return MaterialApp(
-      home: Lobby(),
+      home: Scaffold(
+        body: Home(user),
+      ),
     );
   }
 }

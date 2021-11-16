@@ -1,28 +1,26 @@
-import 'dart:ui';
-
-import 'package:finebooks_app/blocs/friends/friends_bloc.dart';
-import 'package:finebooks_app/blocs/friends/friends_events.dart';
-import 'package:finebooks_app/blocs/friends/friends_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../theme/theme.dart';
+import '../../models/user.dart';
+import './components/friends_page.dart';
 import './components/followers_page.dart';
 import './components/following_page.dart';
-import '../../theme/theme.dart';
-
-import 'components/friends_page.dart';
+import '../../blocs/friends/friends_bloc.dart';
+import '../../blocs/friends/friends_state.dart';
+import '../../blocs/friends/friends_events.dart';
 
 class Friends extends StatelessWidget {
-  PageController _pageController = PageController();
-  int _selectedItem = 0;
-  var _pages = [FriendsPage(), FollowingPage(), FollowersPage()];
+  final User user;
+
+  Friends(this.user);
 
   @override
   Widget build(BuildContext context) {
+    final _pages = [FriendsPage(user), FollowingPage(), FollowersPage()];
+
     var mediaQuery = MediaQuery.of(context);
     var appWidth = mediaQuery.size.width;
-    var appHeight =
-        mediaQuery.size.height - MediaQueryData.fromWindow(window).padding.top;
 
     return MaterialApp(
       theme: CustomTheme.lightTheme,

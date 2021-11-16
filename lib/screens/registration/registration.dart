@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components/data_form_registration.dart';
 
 class Registration extends StatelessWidget {
-  // onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);

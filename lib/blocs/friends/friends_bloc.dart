@@ -8,8 +8,11 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
 
   @override
   Stream<FriendsState> mapEventToState(FriendsEvent event) async* {
+    if (event is SetValues) {
+      yield state.newFriendsState(pIndex: event.index, pUser: event.user);
+    }
     // Switch pages on friends page
-    if (event is SwitchPage) {
+    else if (event is SwitchPage) {
       yield state.newFriendsState(pIndex: event.index);
     }
     // Set user index in search result

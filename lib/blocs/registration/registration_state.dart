@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/user.dart';
 import './registration_bloc.dart';
 import './registration_events.dart';
-import '../../models/user.dart';
 import '../../screens/login/login.dart';
 import '../../services/post/post_user.dart';
+import '../../functions/simple_error_message.dart';
 
 class RegistrationState {
   bool isWaitingForApi;
@@ -214,6 +215,8 @@ class RegistrationState {
       String pFirstName = "'" + this.firstName + "'";
 
       User user = new User(
+        id: 1,
+        image: '',
         email: pEmail,
         username: pUsername,
         password: pPassword,
@@ -231,12 +234,12 @@ class RegistrationState {
         if (value == 'TimeoutException') {
           String message =
               'Somthing is wrong, please check you network connection';
-          state.errorAlertDialog(ctx, message);
+          simpleErrorMessage(ctx, message);
         }
         //Other exception
         else if (value == 'OtherException') {
           String message = 'Other exception';
-          state.errorAlertDialog(ctx, message);
+          simpleErrorMessage(ctx, message);
         }
         //User added successfuly
         else if (value == "\"User added successfully\"") {
@@ -254,12 +257,12 @@ class RegistrationState {
 
           if (value.contains(usernameChecker)) {
             String message = 'This username is already used';
-            state.errorAlertDialog(ctx, message);
+            simpleErrorMessage(ctx, message);
           }
           //Check email
           else if (value.contains(emailChecker)) {
             String message = 'This username is already used';
-            state.errorAlertDialog(ctx, message);
+            simpleErrorMessage(ctx, message);
           }
 
           ctx.read<RegistrationBloc>().add(SetIsModificationRequired(
@@ -268,26 +271,5 @@ class RegistrationState {
         }
       });
     }
-  }
-
-  void errorAlertDialog(BuildContext ctx, String message) {
-    showDialog<String>(
-      context: ctx,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text('Error'),
-        content: Text(message),
-        actions: <Widget>[
-          TextButton(
-            child: const Text(
-              'OK',
-              style: TextStyle(
-                color: Colors.brown,
-              ),
-            ),
-            onPressed: () => Navigator.pop(context, 'OK'),
-          ),
-        ],
-      ),
-    );
   }
 }

@@ -1,9 +1,15 @@
 import 'dart:ui';
 
-import 'package:finebooks_app/screens/friends/friends.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/user.dart';
+import '../../../screens/friends/friends.dart';
+
 class MoreBottomSheet extends StatelessWidget {
+  final User user;
+
+  MoreBottomSheet(this.user);
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
@@ -55,7 +61,7 @@ class MoreBottomSheet extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Friends(),
+                    builder: (context) => Friends(user),
                   ),
                 );
               },

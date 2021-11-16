@@ -1,15 +1,19 @@
 import 'dart:ui';
 
-import 'package:finebooks_app/screens/other_user_profile/other_user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/user.dart';
 import '../../../blocs/friends/friends_bloc.dart';
-import '../../../blocs/friends/friends_events.dart';
 import '../../../blocs/friends/friends_state.dart';
+import '../../../blocs/friends/friends_events.dart';
+import '../../other_user_profile/other_user_profile.dart';
 
 class FriendsPage extends StatelessWidget {
+  final User loggedInUser;
+
+  FriendsPage(this.loggedInUser);
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
@@ -25,7 +29,7 @@ class FriendsPage extends StatelessWidget {
             return FloatingActionButton(
               onPressed: () => showSearch(
                 context: context,
-                delegate: DataSearch(context, state),
+                delegate: DataSearch(context, state, loggedInUser),
               ),
               backgroundColor: Colors.brown,
               child: Icon(Icons.person_add_sharp),
@@ -41,10 +45,11 @@ class FriendsPage extends StatelessWidget {
 }
 
 class DataSearch extends SearchDelegate {
+  User loggedInUser;
   BuildContext ctx;
   FriendsState state;
 
-  DataSearch(this.ctx, this.state);
+  DataSearch(this.ctx, this.state, this.loggedInUser);
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -69,15 +74,12 @@ class DataSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final index = state.getUserIndexInSearchResult;
-    return OtherUserProfile(index);
+    final user = state.getUser;
+    return OtherUserProfile(user, loggedInUser);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    var appHeight = mediaQuery.size.height;
-
     ctx
         .read<FriendsBloc>()
         .add(SearchUsersByNameFragment(userNameFragment: query));
@@ -90,15 +92,15 @@ class DataSearch extends SearchDelegate {
       itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.person),
         onTap: () {
-          ctx.read<FriendsBloc>().add(SetUserIndexInSearchResult(index));
+          state.setUser(mySuggestionList[index]);
           showResults(context);
         },
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              (mySuggestionList[index].lastName as String) +
-                  (mySuggestionList[index].firstName as String),
+              (mySuggestionList[index].lastName) +
+                  (mySuggestionList[index].firstName),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],

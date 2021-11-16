@@ -1,34 +1,33 @@
-import 'package:flutter/material.dart';
-
 import '../../models/user.dart';
 import '../../services/get/get_users_by_name_fragment.dart';
-import '../../screens/friends/components/friends_page.dart';
-import '../../screens/friends/components/followers_page.dart';
-import '../../screens/friends/components/following_page.dart';
 
 class FriendsState {
-  final int index;
+  int index;
   final int userIndexInSearchResult;
 
   final String userNameFragment;
 
+  User? user;
+
   List<User>? users;
-  final pages = [FriendsPage(), FollowingPage(), FollowersPage()];
 
   FriendsState({
+    this.user,
     this.users,
-    this.index = 0,
+    this.index = 100,
     this.userNameFragment = '',
     this.userIndexInSearchResult = 0,
   });
 
   FriendsState newFriendsState({
+    User? pUser,
     int? pIndex,
     int? pUserIndexInSearchResult,
     String? pUserNameFragment,
   }) {
     return FriendsState(
       users: this.users,
+      user: pUser ?? this.user,
       index: pIndex ?? this.index,
       userNameFragment: pUserNameFragment ?? this.userNameFragment,
       userIndexInSearchResult:
@@ -36,16 +35,24 @@ class FriendsState {
     );
   }
 
+  void setUser(User pUser) {
+    this.user = pUser;
+  }
+
+  void setIndex(int pIndex) {
+    this.index = pIndex;
+  }
+
   int get getIndex {
     return this.index;
   }
 
-  int get getUserIndexInSearchResult {
-    return this.userIndexInSearchResult;
+  User? get getUser {
+    return this.user;
   }
 
-  Widget getPageByIndex(int index) {
-    return pages[index];
+  int get getUserIndexInSearchResult {
+    return this.userIndexInSearchResult;
   }
 
   List<User> get getUsers {

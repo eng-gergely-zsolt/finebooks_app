@@ -1,4 +1,12 @@
+import 'package:finebooks_app/models/user.dart';
+
 abstract class FriendsEvent {}
+
+class SetValues extends FriendsEvent {
+  final int? index;
+  final User? user;
+  SetValues({this.index, this.user});
+}
 
 class SwitchPage extends FriendsEvent {
   final int index;
